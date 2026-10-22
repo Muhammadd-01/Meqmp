@@ -31,17 +31,6 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="topbar">
-        <div className="container topbar__inner">
-          <span className="topbar__tag">ISO 9001:2015 certified · Since 2005 · First TVTC foreign-registered centre in KSA</span>
-          <div className="topbar__links">
-            <a href={contact.phoneHref}><Phone size={14} /> {contact.phone}</a>
-            <a href={`mailto:${contact.email}`}><Mail size={14} /> {contact.email}</a>
-            <a href={contact.lms} target="_blank" rel="noreferrer" className="topbar__lms">Meridian LMS</a>
-          </div>
-        </div>
-      </div>
-
       <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
         <div className="container nav__inner">
           <Link to="/" className="nav__brand" aria-label="Meridian home">

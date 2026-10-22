@@ -629,7 +629,6 @@
   .page-hero { padding: 56px 0 48px; }
   .hero { padding-top: 40px; }
   .nav__inner, .nav--scrolled .nav__inner { height: 64px; }
-  .topbar { display: none; }
 }
 
 /* Overflow fixes found in the device sweep */

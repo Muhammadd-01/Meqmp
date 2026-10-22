@@ -58,6 +58,8 @@ function Hero() {
   const orbY = useTransform(sy, (v) => v * 30);
   const cardX = useTransform(sx, (v) => v * -18);
   const cardY = useTransform(sy, (v) => v * -18);
+  const bgX = useTransform(sx, (v) => v * -24);
+  const bgY = useTransform(sy, (v) => v * -16);
   const onMove = (e) => {
     if (e.pointerType !== 'mouse') return;
     const r = e.currentTarget.getBoundingClientRect();
@@ -67,7 +69,20 @@ function Hero() {
 
   return (
     <section className="hero" onPointerMove={onMove}>
-      <div className="hero__bg" />
+      <div className="hero__bg" aria-hidden="true">
+        <motion.img
+          src={photos.towers.replace('w=1600', 'w=1920')}
+          srcSet={srcSet(photos.towers, [768, 1080, 1440, 1920, 2560])}
+          sizes="100vw"
+          alt=""
+          fetchpriority="high"
+          style={{ x: bgX, y: bgY }}
+          initial={{ scale: 1.22 }}
+          animate={{ scale: 1.1 }}
+          transition={{ duration: 2.6, ease }}
+        />
+      </div>
+      <div className="hero__overlay" aria-hidden="true" />
       <div className="dot-grid" />
       <div className="glow glow--sky glow--drift" style={{ width: 520, height: 520, top: -200, left: -160, opacity: 0.35 }} />
       <div className="glow glow--orange glow--drift" style={{ width: 420, height: 420, bottom: -220, right: '20%', opacity: 0.28 }} />

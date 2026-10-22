@@ -14,10 +14,37 @@
 .hero__bg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background: var(--deep-950);
+}
+
+.hero__bg img {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.85) contrast(1.05);
+  will-change: transform;
+}
+
+/* Brand-tinted overlay: dense behind the copy (left), lighter on the right so the
+   photo shows through the showcase, and fading into the stats strip at the bottom. */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(1100px 600px at 85% 30%, rgba(66, 155, 183, 0.32), transparent 60%),
-    radial-gradient(900px 500px at 10% 100%, rgba(38, 97, 115, 0.6), transparent 60%),
-    var(--grad-deep);
+    linear-gradient(180deg, rgba(2, 24, 32, 0.55) 0%, transparent 22%, transparent 62%, rgba(2, 24, 32, 0.92) 100%),
+    linear-gradient(100deg, rgba(2, 24, 32, 0.96) 0%, rgba(5, 42, 54, 0.9) 34%, rgba(9, 63, 80, 0.62) 62%, rgba(38, 97, 115, 0.42) 100%),
+    radial-gradient(900px 520px at 82% 38%, rgba(66, 155, 183, 0.28), transparent 65%);
+}
+
+@media (max-width: 960px) {
+  .hero__overlay {
+    background:
+      linear-gradient(180deg, rgba(2, 24, 32, 0.9) 0%, rgba(5, 42, 54, 0.82) 45%, rgba(9, 63, 80, 0.7) 70%, rgba(2, 24, 32, 0.95) 100%);
+  }
 }
 
 .hero__grid {
