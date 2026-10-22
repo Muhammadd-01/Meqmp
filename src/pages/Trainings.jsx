@@ -6,7 +6,11 @@ import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
-import { contact, photos } from '../data/site';
+import { ImageReveal, SplitText } from '../components/Motion';
+import FAQ from '../components/FAQ';
+import Ticker from '../components/Ticker';
+import { trainingFaqs } from '../data/faqs';
+import { contact, photos, srcSet } from '../data/site';
 import { accreditations, trainingCategories, trainings } from '../data/content';
 
 const catIcon = {
@@ -113,12 +117,10 @@ export default function Trainings() {
 
       <section className="section section--soft">
         <div className="container split">
-          <Reveal x={-30} y={0} className="detail-photo">
-            <img src={photos.workshop.replace('w=1600', 'w=1100')} alt="Interactive workshop" loading="lazy" />
-          </Reveal>
+          <ImageReveal className="detail-photo" src={photos.workshop.replace('w=1600', 'w=1100')} srcSet={srcSet(photos.workshop, [480, 768, 1080])} sizes="(max-width: 900px) 92vw, 46vw" alt="Interactive Meridian training workshop" />
           <Reveal x={30} y={0}>
             <span className="eyebrow">Corporate programs</span>
-            <h2>Training designed around <span className="text-sky">your people</span></h2>
+            <SplitText>Training designed around <span className="text-sky">your people</span></SplitText>
             <p className="lead">
               Need something specific? We design bespoke programs — from Aramco Schedule Q awareness to executive
               quality leadership — delivered on-site, virtually or through our LMS.
@@ -127,6 +129,10 @@ export default function Trainings() {
           </Reveal>
         </div>
       </section>
+
+      <Ticker tone="deep" items={['Lead Auditor', 'Internal Auditor', 'Lean Six Sigma', 'PMP', 'RMP', 'OSHA', 'First Aid', 'Fire Safety']} />
+
+      <FAQ items={trainingFaqs} title="Training FAQs" />
 
       <CTASection title="Upskill your workforce with Meridian" />
     </>

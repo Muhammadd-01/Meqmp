@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, BadgeCheck, CheckCircle2, Globe2, Sparkles, X } from 'lucide-react';
 import Icon from '../components/Icon';
 import Counter from '../components/Counter';
@@ -12,21 +12,68 @@ import ProcessSteps from '../components/ProcessSteps';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
 import ArticleCard from '../components/ArticleCard';
+import FAQ from '../components/FAQ';
+import Ticker from '../components/Ticker';
+import { ImageReveal, Magnetic, SplitText, Tilt } from '../components/Motion';
+import { homeFaqs } from '../data/faqs';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
-import { clients, heroStats, howWeWork, industries, painPoints, photos, standards, valueProps, whyUs } from '../data/site';
+import { clients, heroStats, howWeWork, industries, painPoints, photos, srcSet, standards, valueProps, whyUs } from '../data/site';
 import { pillars } from '../data/services';
 import { articles } from '../data/content';
 
 const ease = [0.22, 1, 0.36, 1];
 const words = ['Quality.', 'Strategy.', 'Excellence.'];
+const rotating = ['ISO certification', 'lead auditor training', 'ESG & sustainability', 'risk & compliance', 'corporate wellbeing'];
+
+function Rotator() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setI((v) => (v + 1) % rotating.length), 2600);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <span className="rotator">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={rotating[i]}
+          className="rotator__word"
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: '0%', opacity: 1 }}
+          exit={{ y: '-100%', opacity: 0 }}
+          transition={{ duration: 0.55, ease }}
+        >
+          {rotating[i]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 function Hero() {
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const sy = useSpring(my, { stiffness: 60, damping: 20 });
+  const orbX = useTransform(sx, (v) => v * 30);
+  const orbY = useTransform(sy, (v) => v * 30);
+  const cardX = useTransform(sx, (v) => v * -18);
+  const cardY = useTransform(sy, (v) => v * -18);
+  const onMove = (e) => {
+    if (e.pointerType !== 'mouse') return;
+    const r = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - r.left) / r.width - 0.5);
+    my.set((e.clientY - r.top) / r.height - 0.5);
+  };
+
   return (
-    <section className="hero">
+    <section className="hero" onPointerMove={onMove}>
       <div className="hero__bg" />
       <div className="dot-grid" />
-      <div className="glow glow--sky" style={{ width: 520, height: 520, top: -200, left: -160, opacity: 0.35 }} />
-      <div className="glow glow--orange" style={{ width: 420, height: 420, bottom: -220, right: '20%', opacity: 0.28 }} />
+      <div className="glow glow--sky glow--drift" style={{ width: 520, height: 520, top: -200, left: -160, opacity: 0.35 }} />
+      <div className="glow glow--orange glow--drift" style={{ width: 420, height: 420, bottom: -220, right: '20%', opacity: 0.28 }} />
+      <div className="hero__particles" aria-hidden="true">
+        {Array.from({ length: 14 }, (_, k) => <span key={k} style={{ '--i': k, '--s': `${6 + ((k * 5) % 8)}px` }} />)}
+      </div>
 
       <div className="container hero__grid">
         <div className="hero__copy">
@@ -45,8 +92,12 @@ function Hero() {
               >
                 {w}
               </motion.span>
-            ))}
+            )).flatMap((el, i) => (i ? [' ', el] : [el]))}
           </h1>
+
+          <motion.p className="hero__rotator" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>
+            Specialists in <Rotator />
+          </motion.p>
 
           <motion.p className="hero__lead" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.6, ease }}>
             Trusted advisory experts in strategic development and operational excellence — delivering advisory,
@@ -54,8 +105,8 @@ function Hero() {
           </motion.p>
 
           <motion.div className="hero__actions" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.75, ease }}>
-            <Link to="/get-quote" className="btn btn--primary">Book a Free Consultation <ArrowRight size={18} /></Link>
-            <Link to="/services" className="btn btn--ghost">Explore Services</Link>
+            <Magnetic><Link to="/get-quote" className="btn btn--primary">Book a Free Consultation <ArrowRight size={18} /></Link></Magnetic>
+            <Magnetic strength={0.25}><Link to="/services" className="btn btn--ghost">Explore Services</Link></Magnetic>
           </motion.div>
 
           <motion.ul className="hero__trust" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1 }}>
@@ -66,9 +117,10 @@ function Hero() {
         </div>
 
         <div className="hero__visual">
-          <motion.div className="hero__orb" initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease }}>
+          <motion.div className="hero__orb" style={{ x: orbX, y: orbY }} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease }}>
             <MeridianMark />
           </motion.div>
+          <motion.div className="hero__cards" style={{ x: cardX, y: cardY }}>
 
           <motion.div
             className="float-card float-card--a"
@@ -95,13 +147,14 @@ function Hero() {
               <em>training centre in Saudi Arabia</em>
             </span>
           </motion.div>
+          </motion.div>
         </div>
       </div>
 
       <div className="container">
         <Stagger className="hero__stats" gap={0.1}>
           {heroStats.map((s) => (
-            <StaggerItem key={s.label} className="hero__stat">
+            <StaggerItem key={s.label} className="hero__stat" whileHover={{ y: -4 }}>
               <strong><Counter value={s.value} suffix={s.suffix} /></strong>
               <span>{s.label}</span>
             </StaggerItem>
@@ -146,8 +199,9 @@ function Pillars() {
         <Stagger className="pillars">
           {pillars.map((p, i) => (
             <StaggerItem key={p.slug} className={`pillar pillar--${i}`}>
+              <Tilt className="pillar__tilt" max={5}>
               <Link to={p.to} className="pillar__link">
-                <img src={p.image.replace('w=1600', 'w=900')} alt="" loading="lazy" />
+                <img src={p.image.replace('w=1600', 'w=900')} srcSet={srcSet(p.image, [480, 768, 1080])} sizes="(max-width: 600px) 100vw, 50vw" alt={`${p.title} services`} loading="lazy" decoding="async" />
                 <div className="pillar__shade" />
                 <div className="pillar__body">
                   <span className="pillar__icon"><Icon name={p.icon} size={24} /></span>
@@ -155,7 +209,9 @@ function Pillars() {
                   <p>{p.short}</p>
                   <span className="pillar__more">Learn more <ArrowUpRight size={18} /></span>
                 </div>
+                <span className="pillar__num">{String(i + 1).padStart(2, '0')}</span>
               </Link>
+              </Tilt>
             </StaggerItem>
           ))}
         </Stagger>
@@ -171,7 +227,7 @@ function Problems() {
       <div className="container split">
         <Reveal>
           <span className="eyebrow">Problems that stop growth</span>
-          <h2>Is your business facing these challenges?</h2>
+          <SplitText>Is your business facing these challenges?</SplitText>
           <p className="lead">
             Our ISO experts turn compliance pressure into a competitive advantage. Hover — or tap — and watch them disappear.
           </p>
@@ -189,11 +245,13 @@ function Problems() {
         <Stagger className="grid grid-2 values">
           {valueProps.map((v) => (
             <StaggerItem key={v.title}>
-              <SpotlightCard className="value-card">
-                <span className="icon-badge"><Icon name={v.icon} size={26} /></span>
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
-              </SpotlightCard>
+              <Tilt className="h-full" max={6}>
+                <SpotlightCard className="value-card">
+                  <span className="icon-badge"><Icon name={v.icon} size={26} /></span>
+                  <h3>{v.title}</h3>
+                  <p>{v.text}</p>
+                </SpotlightCard>
+              </Tilt>
             </StaggerItem>
           ))}
         </Stagger>
@@ -206,22 +264,18 @@ function AboutTeaser() {
   return (
     <section className="section">
       <div className="container split about-teaser">
-        <Reveal className="about-teaser__media" x={-30} y={0}>
-          <div className="about-teaser__img about-teaser__img--main">
-            <img src={photos.boardroom.replace('w=1600', 'w=1000')} alt="Meridian consultants in a strategy session" loading="lazy" />
-          </div>
-          <div className="about-teaser__img about-teaser__img--small">
-            <img src={photos.classroom.replace('w=1600', 'w=700')} alt="Meridian training session" loading="lazy" />
-          </div>
+        <div className="about-teaser__media">
+          <ImageReveal className="about-teaser__img about-teaser__img--main" src={photos.boardroom.replace('w=1600', 'w=1000')} srcSet={srcSet(photos.boardroom, [480, 768, 1080])} sizes="(max-width: 900px) 90vw, 45vw" alt="Meridian consultants in a strategy session" />
+          <ImageReveal className="about-teaser__img about-teaser__img--small" from="bottom" src={photos.classroom.replace('w=1600', 'w=700')} alt="Meridian training session" />
           <motion.div className="about-teaser__badge" whileHover={{ rotate: -4, scale: 1.05 }}>
             <strong>20+</strong>
             <span>years of building<br />excellence</span>
           </motion.div>
-        </Reveal>
+        </div>
 
         <Reveal x={30} y={0}>
           <span className="eyebrow">About Meridian</span>
-          <h2>Together, we build <span className="text-sky">sustainable excellence</span></h2>
+          <SplitText>Together, we build <span className="text-sky">sustainable excellence</span></SplitText>
           <p className="lead">
             Since 2005, Meridian has grown from modest beginnings into a trusted partner for quality and compliance —
             an ISO 9001:2015 certified firm with offices in Saudi Arabia, Bahrain, Canada and Pakistan.
@@ -248,7 +302,7 @@ function HowWeWork() {
   return (
     <section className="section section--deep">
       <div className="dot-grid" />
-      <div className="glow glow--orange" style={{ width: 400, height: 400, right: -120, top: -120, opacity: 0.25 }} />
+      <div className="glow glow--orange glow--drift" style={{ width: 400, height: 400, right: -120, top: -120, opacity: 0.25 }} />
       <div className="container" style={{ position: 'relative' }}>
         <SectionHeading eyebrow="How we work" title="We get it right the first time" text="A proven four-stage approach that takes you from first conversation to lasting, self-sustaining excellence." />
         <ProcessSteps steps={howWeWork} dark />
@@ -343,14 +397,17 @@ export default function Home() {
     <>
       <Hero />
       <Clients />
+      <Ticker items={['ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 27001', 'Lean Six Sigma', 'LEED', 'Mostadam', 'EcoVadis', 'API Q1/Q2', 'ISO 42001']} />
       <Pillars />
       <Problems />
       <AboutTeaser />
       <HowWeWork />
       <Standards />
       <Industries />
+      <Ticker tone="deep" reverse items={['Advisory', 'Compliance', 'Sustainability', 'Trainings', 'Corporate Wellbeing', 'Since 2005']} />
       <Voices />
       <Insights />
+      <FAQ items={homeFaqs} soft title="Questions, answered" text="Quick answers about Meridian, our standards, accreditations and how to get started." />
       <CTASection />
     </>
   );

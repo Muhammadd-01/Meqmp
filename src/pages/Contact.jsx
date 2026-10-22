@@ -6,6 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import SpotlightCard from '../components/SpotlightCard';
 import { Field, sendEnquiry } from '../components/Field';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
+import { ImageReveal, Tilt } from '../components/Motion';
 import { contact, offices, photos } from '../data/site';
 
 const quick = [
@@ -92,9 +93,7 @@ export default function Contact() {
           </Reveal>
 
           <Reveal className="contact-side" delay={0.1}>
-            <div className="contact-side__img">
-              <img src={photos.meeting.replace('w=1600', 'w=900')} alt="Meridian team meeting" loading="lazy" />
-            </div>
+            <ImageReveal className="contact-side__img" from="right" src={photos.meeting.replace('w=1600', 'w=900')} alt="Meridian team meeting" />
             <div className="contact-side__note">
               <strong>Free strategy call</strong>
               <p>Not sure where to start? Book a no-obligation call and we'll map your fastest route to certification.</p>
@@ -109,7 +108,7 @@ export default function Contact() {
           <Stagger className="grid grid-4">
             {offices.map((o) => (
               <StaggerItem key={o.country}>
-                <SpotlightCard className="office-card">
+                <Tilt className="h-full" max={7}><SpotlightCard className="office-card">
                   <span className="office-card__flag" aria-hidden="true">{o.flag}</span>
                   {o.hq && <span className="chip chip--orange office-card__hq">Head office</span>}
                   <h3>{o.country}</h3>
@@ -119,7 +118,7 @@ export default function Contact() {
                     <a key={p} href={`tel:${p.replace(/\s/g, '')}`} className="office-card__phone"><Phone size={14} /> {p}</a>
                   ))}
                   <a href={`mailto:${contact.email}`} className="office-card__phone"><Mail size={14} /> {contact.email}</a>
-                </SpotlightCard>
+                </SpotlightCard></Tilt>
               </StaggerItem>
             ))}
           </Stagger>

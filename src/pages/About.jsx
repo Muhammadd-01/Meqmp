@@ -7,7 +7,9 @@ import Counter from '../components/Counter';
 import Icon from '../components/Icon';
 import CTASection from '../components/CTASection';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
-import { heroStats, industries, offices, photos, team, whyUs } from '../data/site';
+import { ImageReveal, SplitText, Tilt } from '../components/Motion';
+import Ticker from '../components/Ticker';
+import { contact, heroStats, industries, offices, photos, srcSet, standards, team, whyUs } from '../data/site';
 import { pillars } from '../data/services';
 
 const pillarsOfPurpose = [
@@ -28,6 +30,18 @@ const pillarsOfPurpose = [
   },
 ];
 
+// Plain, quotable facts: the block search and AI engines lift answers from.
+const facts = [
+  ['Founded', '2005'],
+  ['Head office', 'Dammam, Saudi Arabia'],
+  ['Offices', 'Saudi Arabia · Bahrain · Pakistan · Canada'],
+  ['Certification', 'ISO 9001:2015'],
+  ['Training status', 'First TVTC foreign-registered centre in KSA'],
+  ['Auditors', 'IRCA lead auditors, Aramco & NEOM approved'],
+  ['Standards', `${standards.length}+ ISO & API frameworks`],
+  ['Contact', `${contact.phone} · ${contact.email}`],
+];
+
 export default function About() {
   return (
     <>
@@ -45,7 +59,7 @@ export default function About() {
         <div className="container split">
           <Reveal x={-30} y={0}>
             <span className="eyebrow">Our journey</span>
-            <h2>From modest beginnings to a <span className="text-sky">trusted global partner</span></h2>
+            <SplitText>From modest beginnings to a <span className="text-sky">trusted global partner</span></SplitText>
             <p className="lead">
               Meridian started with a simple belief: quality is not paperwork, it is how great organisations work.
             </p>
@@ -58,14 +72,31 @@ export default function About() {
             <Link to="/services" className="btn btn--dark">What we do <ArrowRight size={18} /></Link>
           </Reveal>
 
-          <Reveal x={30} y={0} className="story-stats">
+          <Stagger className="story-stats" gap={0.12}>
             {heroStats.map((s, i) => (
-              <div key={s.label} className={`story-stat story-stat--${i}`}>
-                <strong><Counter value={s.value} suffix={s.suffix} /></strong>
-                <span>{s.label}</span>
-              </div>
+              <StaggerItem key={s.label} className={`story-stat-wrap story-stat-wrap--${i}`}>
+                <Tilt className={`story-stat story-stat--${i}`} max={10}>
+                  <strong><Counter value={s.value} suffix={s.suffix} /></strong>
+                  <span>{s.label}</span>
+                </Tilt>
+              </StaggerItem>
             ))}
-          </Reveal>
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Key facts */}
+      <section className="section section--tight">
+        <div className="container">
+          <SectionHeading eyebrow="At a glance" title="Meridian in key facts" />
+          <Stagger as="dl" className="facts" gap={0.05}>
+            {facts.map(([k, v]) => (
+              <StaggerItem key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
       </section>
 
@@ -76,16 +107,20 @@ export default function About() {
           <Stagger className="grid grid-3">
             {pillarsOfPurpose.map(({ icon: I, title, text }) => (
               <StaggerItem key={title}>
+                <Tilt className="h-full" max={6}>
                 <SpotlightCard className="purpose-card">
                   <span className="icon-badge"><I size={26} strokeWidth={1.8} /></span>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </SpotlightCard>
+                </Tilt>
               </StaggerItem>
             ))}
           </Stagger>
         </div>
       </section>
+
+      <Ticker items={industries} />
 
       {/* Why choose us */}
       <section className="section section--deep">
@@ -136,13 +171,12 @@ export default function About() {
       {/* Sustainability commitment */}
       <section className="section section--soft">
         <div className="container split">
-          <Reveal className="commit__media" x={-30} y={0}>
-            <img src={photos.wind.replace('w=1600', 'w=1100')} alt="Wind turbines at sunset" loading="lazy" />
+          <ImageReveal className="commit__media" src={photos.wind.replace('w=1600', 'w=1100')} srcSet={srcSet(photos.wind, [480, 768, 1080])} sizes="(max-width: 900px) 90vw, 45vw" alt="Wind turbines at sunset">
             <div className="commit__badge"><Leaf size={22} /> LEED · GRI · UN SDGs</div>
-          </Reveal>
+          </ImageReveal>
           <Reveal x={30} y={0}>
             <span className="eyebrow">Our commitment</span>
-            <h2>Sustainability is a responsibility, <span className="text-sky">not a trend</span></h2>
+            <SplitText>Sustainability is a responsibility, <span className="text-sky">not a trend</span></SplitText>
             <p className="lead">
               We help clients adopt green practices using LEED, GRI and UN SDG frameworks — from carbon footprint
               assessments and energy-efficient strategy design to full ESG compliance support.
@@ -180,13 +214,13 @@ export default function About() {
           <Stagger className="grid grid-4">
             {offices.map((o) => (
               <StaggerItem key={o.country}>
-                <SpotlightCard className="office-card">
+                <Tilt className="h-full" max={7}><SpotlightCard className="office-card">
                   <span className="office-card__flag" aria-hidden="true">{o.flag}</span>
                   {o.hq && <span className="chip chip--orange office-card__hq">Head office</span>}
                   <h3>{o.country}</h3>
                   <span className="office-card__city"><MapPin size={15} /> {o.city}</span>
                   <p>{o.address}</p>
-                </SpotlightCard>
+                </SpotlightCard></Tilt>
               </StaggerItem>
             ))}
           </Stagger>

@@ -6,7 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import ArticleCard from '../components/ArticleCard';
 import CTASection from '../components/CTASection';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
-import { photos } from '../data/site';
+import { photos, srcSet } from '../data/site';
 import { articles } from '../data/content';
 
 export default function Insights() {
@@ -27,7 +27,7 @@ export default function Insights() {
           <Reveal>
             <Link to={`/insights/${featured.slug}`} className="featured">
               <div className="featured__media">
-                <img src={featured.image.replace('w=1600', 'w=1200')} alt="" />
+                <img src={featured.image.replace('w=1600', 'w=1200')} srcSet={srcSet(featured.image, [480, 768, 1080, 1440])} sizes="(max-width: 900px) 92vw, 55vw" alt={featured.title} />
               </div>
               <div className="featured__body">
                 <span className="chip chip--orange">Featured · {featured.category}</span>

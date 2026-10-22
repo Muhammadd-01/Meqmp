@@ -10,7 +10,11 @@ import Counter from '../components/Counter';
 import Icon from '../components/Icon';
 import CTASection from '../components/CTASection';
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal';
-import { standards } from '../data/site';
+import { ImageReveal, SplitText, Tilt } from '../components/Motion';
+import FAQ from '../components/FAQ';
+import Ticker from '../components/Ticker';
+import { serviceFaqs } from '../data/faqs';
+import { srcSet, standards } from '../data/site';
 import { pillars, serviceDetails } from '../data/services';
 
 function StandardsAccordion() {
@@ -87,11 +91,13 @@ export default function ServiceDetail() {
               <Stagger className={`grid grid-${{ 8: 4, 10: 5 }[g.items.length] || 3}`} gap={0.05}>
                 {g.items.map((it, i) => (
                   <StaggerItem key={it.title}>
-                    <SpotlightCard className="offer-card">
-                      <span className="offer-card__num">{String(i + 1).padStart(2, '0')}</span>
-                      <h3>{it.title}</h3>
-                      <p>{it.text}</p>
-                    </SpotlightCard>
+                    <Tilt className="h-full" max={7}>
+                      <SpotlightCard className="offer-card">
+                        <span className="offer-card__num">{String(i + 1).padStart(2, '0')}</span>
+                        <h3>{it.title}</h3>
+                        <p>{it.text}</p>
+                      </SpotlightCard>
+                    </Tilt>
                   </StaggerItem>
                 ))}
               </Stagger>
@@ -99,6 +105,8 @@ export default function ServiceDetail() {
           </section>
         ))}
       </div>
+
+      <Ticker items={d.groups.flatMap((g) => g.items.map((it) => it.title))} />
 
       {/* Standards */}
       {d.showStandards && (
@@ -135,7 +143,7 @@ export default function ServiceDetail() {
         <div className="container split split--top">
           <Reveal>
             <span className="eyebrow">Business benefits</span>
-            <h2>What you <span className="text-sky">gain</span></h2>
+            <SplitText>What you <span className="text-sky">gain</span></SplitText>
             <ul className="benefits">
               {d.benefits.map((b, i) => (
                 <motion.li
@@ -155,18 +163,18 @@ export default function ServiceDetail() {
             <Stagger className="grid grid-2">
               {d.why.map((w) => (
                 <StaggerItem key={w.title}>
-                  <SpotlightCard className="why-mini">
-                    <h3>{w.title}</h3>
-                    <p>{w.text}</p>
-                  </SpotlightCard>
+                  <Tilt className="h-full" max={6}>
+                    <SpotlightCard className="why-mini">
+                      <h3>{w.title}</h3>
+                      <p>{w.text}</p>
+                    </SpotlightCard>
+                  </Tilt>
                 </StaggerItem>
               ))}
             </Stagger>
           )}
           {!d.why && (
-            <Reveal className="detail-photo">
-              <img src={d.image.replace('w=1600', 'w=1000')} alt="" loading="lazy" />
-            </Reveal>
+            <ImageReveal className="detail-photo" src={d.image.replace('w=1600', 'w=1000')} srcSet={srcSet(d.image, [480, 768, 1080])} sizes="(max-width: 900px) 92vw, 46vw" alt={d.title} />
           )}
         </div>
       </section>
@@ -179,7 +187,7 @@ export default function ServiceDetail() {
             {others.map((p) => (
               <StaggerItem key={p.slug}>
                 <Link to={p.to} className="other-card">
-                  <img src={p.image.replace('w=1600', 'w=700')} alt="" loading="lazy" />
+                  <img src={p.image.replace('w=1600', 'w=700')} alt="" loading="lazy" decoding="async" />
                   <div className="other-card__shade" />
                   <span className="other-card__icon"><Icon name={p.icon} size={22} /></span>
                   <strong>{p.title}</strong>
@@ -190,6 +198,8 @@ export default function ServiceDetail() {
           </Stagger>
         </div>
       </section>
+
+      <FAQ items={serviceFaqs[slug]} title={`${d.eyebrow} FAQs`} text="Straight answers to the questions clients ask us most." />
 
       <CTASection title={`Start your ${d.eyebrow.toLowerCase()} journey`} />
     </>

@@ -46,10 +46,12 @@ export const accreditations = ['CCL Canada', 'Highfield', 'Saaya', 'TVTC Registe
 export const articles = [
   {
     slug: 'iso-9001-2026-early-preparation',
+    seoTitle: 'ISO 9001:2026 — Why Early Preparation Pays',
     title: 'ISO 9001:2026 — Why Early Preparation Is Your Competitive Advantage',
     excerpt:
       'Most organisations will treat ISO 9001:2026 as just another update. The ones that prepare early will turn the transition into a genuine edge.',
     date: 'October 7, 2025',
+    isoDate: '2025-10-07',
     category: 'Quality',
     readTime: '5 min read',
     image: photos.analytics,
@@ -62,10 +64,12 @@ export const articles = [
   },
   {
     slug: 'sustainability-strategies-for-smes',
+    seoTitle: 'Sustainability Strategies for SMEs',
     title: 'Sustainability Strategies for SMEs: Cut Costs, Win Clients, Future-Proof',
     excerpt:
       'Many SMEs assume sustainability is expensive. In practice, the right first steps pay for themselves — and open doors with large buyers.',
     date: 'October 7, 2025',
+    isoDate: '2025-10-07',
     category: 'Sustainability',
     readTime: '6 min read',
     image: photos.solar,

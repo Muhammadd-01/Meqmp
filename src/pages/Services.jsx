@@ -7,7 +7,9 @@ import Marquee from '../components/Marquee';
 import Icon from '../components/Icon';
 import CTASection from '../components/CTASection';
 import { Reveal } from '../components/Reveal';
-import { clients, howWeWork, photos } from '../data/site';
+import { ImageReveal, SplitText } from '../components/Motion';
+import Ticker from '../components/Ticker';
+import { clients, howWeWork, photos, srcSet } from '../data/site';
 import { pillars, serviceDetails } from '../data/services';
 import { trainingCategories } from '../data/content';
 
@@ -39,13 +41,19 @@ export default function Services() {
           <div className="service-rows">
             {pillars.map((p, i) => (
               <div key={p.slug} className={`service-row ${i % 2 ? 'service-row--flip' : ''}`}>
-                <Reveal className="service-row__media" x={i % 2 ? 40 : -40} y={0}>
-                  <img src={p.image.replace('w=1600', 'w=1100')} alt="" loading="lazy" />
+                <ImageReveal
+                  className="service-row__media"
+                  from={i % 2 ? 'right' : 'left'}
+                  src={p.image.replace('w=1600', 'w=1100')}
+                  srcSet={srcSet(p.image, [480, 768, 1080])}
+                  sizes="(max-width: 900px) 92vw, 46vw"
+                  alt={`${p.title} — Meridian Quality Management Professionals`}
+                >
                   <span className="service-row__num">{String(i + 1).padStart(2, '0')}</span>
-                </Reveal>
+                </ImageReveal>
                 <Reveal className="service-row__body" x={i % 2 ? -40 : 40} y={0} delay={0.1}>
                   <span className="icon-badge"><Icon name={p.icon} size={26} /></span>
-                  <h2>{p.title}</h2>
+                  <SplitText>{p.title}</SplitText>
                   <p className="lead">{p.short}</p>
                   <div className="service-row__chips">
                     {highlights[p.slug].map((h) => <span key={h} className="chip">{h}</span>)}
@@ -57,6 +65,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      <Ticker items={['Discover', 'Define', 'Build', 'Align', 'Scale', 'Implement', 'Sustain', 'Elevate']} />
 
       <section className="section section--deep">
         <div className="dot-grid" />

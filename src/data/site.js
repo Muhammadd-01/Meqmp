@@ -3,6 +3,10 @@
 export const img = (id, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
 
+// Responsive srcset for an Unsplash URL so phones never download desktop-sized photos.
+export const srcSet = (url, widths = [480, 768, 1080, 1440, 1920]) =>
+  widths.map((w) => `${url.replace(/w=\d+/, `w=${w}`)} ${w}w`).join(', ');
+
 export const photos = {
   analytics: img('1454165804606-c3d57bc86b40'),
   wind: img('1466611653911-95081537e5b7'),
