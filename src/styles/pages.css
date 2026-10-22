@@ -45,6 +45,7 @@
     background:
       linear-gradient(180deg, rgba(2, 24, 32, 0.9) 0%, rgba(5, 42, 54, 0.82) 45%, rgba(9, 63, 80, 0.7) 70%, rgba(2, 24, 32, 0.95) 100%);
   }
+  .hero .glow--sky { opacity: 0.12 !important; }
 }
 
 .hero__grid {
