@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf, MapPin, Mountain, Target, Telescope } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Briefcase, CalendarCheck, Globe2, GraduationCap, Landmark, Leaf, MapPin, Mountain, Target, Telescope, Users } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
 import SpotlightCard from '../components/SpotlightCard';
@@ -42,6 +42,8 @@ const facts = [
   ['Contact', `${contact.phone} · ${contact.email}`],
 ];
 
+const statIcons = [Briefcase, GraduationCap, Users, CalendarCheck];
+
 export default function About() {
   return (
     <>
@@ -55,32 +57,57 @@ export default function About() {
       />
 
       {/* Story */}
-      <section className="section">
-        <div className="container split">
-          <Reveal x={-30} y={0}>
-            <span className="eyebrow">Our journey</span>
-            <SplitText>From modest beginnings to a <span className="text-sky">trusted global partner</span></SplitText>
-            <p className="lead">
-              Meridian started with a simple belief: quality is not paperwork, it is how great organisations work.
-            </p>
-            <p>
-              Two decades later we have helped hundreds of clients — from regional SMEs to global energy majors — build
-              management systems that actually perform. We are proud to be the first TVTC Foreign Registered Training
-              Center in Saudi Arabia, with globally certified trainers, industry-recognised auditors and a proven track
-              record of successful project execution.
-            </p>
-            <Link to="/services" className="btn btn--dark">What we do <ArrowRight size={18} /></Link>
-          </Reveal>
+      <section className="section journey">
+        <div className="container">
+          <div className="journey__grid">
+            <Reveal className="journey__copy" x={-30} y={0}>
+              <span className="eyebrow">Our journey</span>
+              <SplitText>From modest beginnings to a <span className="text-sky">trusted global partner</span></SplitText>
+              <p className="lead">
+                Meridian started with a simple belief: quality is not paperwork, it is how great organisations work.
+              </p>
+              <p>
+                Two decades later we have helped hundreds of clients — from regional SMEs to global energy majors — build
+                management systems that actually perform, with globally certified trainers, industry-recognised auditors
+                and a proven track record of successful project execution.
+              </p>
+              <ul className="journey__points">
+                <li><BadgeCheck size={18} /> ISO 9001:2015 certified</li>
+                <li><Landmark size={18} /> First TVTC foreign-registered centre in KSA</li>
+                <li><Globe2 size={18} /> Offices in 4 countries</li>
+              </ul>
+              <Link to="/services" className="btn btn--dark">What we do <ArrowRight size={18} /></Link>
+            </Reveal>
 
-          <Stagger className="story-stats" gap={0.12}>
-            {heroStats.map((s, i) => (
-              <StaggerItem key={s.label} className={`story-stat-wrap story-stat-wrap--${i}`}>
-                <Tilt className={`story-stat story-stat--${i}`} max={10}>
+            <div className="journey__media">
+              <ImageReveal
+                className="journey__img"
+                from="right"
+                src={photos.team.replace('w=1600', 'w=1000')}
+                srcSet={srcSet(photos.team, [480, 768, 1080])}
+                sizes="(max-width: 900px) 92vw, 46vw"
+                alt="Meridian consultants collaborating"
+              />
+              <Reveal className="journey__badge" delay={0.5} y={20}>
+                <strong>2005</strong>
+                <span>Founded in Saudi Arabia</span>
+              </Reveal>
+              <div className="journey__ring" aria-hidden="true" />
+            </div>
+          </div>
+
+          <Stagger className="journey__stats" gap={0.1}>
+            {heroStats.map((s, i) => {
+              const I = statIcons[i];
+              return (
+                <StaggerItem key={s.label} className="journey__stat">
+                  <span className="journey__stat-icon"><I size={22} /></span>
                   <strong><Counter value={s.value} suffix={s.suffix} /></strong>
-                  <span>{s.label}</span>
-                </Tilt>
-              </StaggerItem>
-            ))}
+                  <span className="journey__stat-label">{s.label}</span>
+                  <span className="journey__bar" aria-hidden="true"><span /></span>
+                </StaggerItem>
+              );
+            })}
           </Stagger>
         </div>
       </section>

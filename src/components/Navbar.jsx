@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Mail, Menu, Phone, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronDown, GraduationCap, Mail, Menu, Phone, X } from 'lucide-react';
 import { contact, nav } from '../data/site';
 
 export default function Navbar() {
@@ -85,6 +85,9 @@ export default function Navbar() {
           </nav>
 
           <div className="nav__cta">
+            <a href={contact.lms} target="_blank" rel="noreferrer" className="btn btn--outline btn--sm nav__lms" title="Meridian Learning Management System">
+              <GraduationCap size={16} /> LMS
+            </a>
             <Link to="/get-quote" className="btn btn--primary btn--sm">
               Get a Quote <ArrowRight size={16} />
             </Link>
@@ -153,6 +156,7 @@ export default function Navbar() {
               </nav>
               <div className="drawer__foot">
                 <Link to="/get-quote" className="btn btn--primary">Get a Quote <ArrowRight size={18} /></Link>
+                <a href={contact.lms} target="_blank" rel="noreferrer" className="btn btn--ghost"><GraduationCap size={18} /> Meridian LMS <ArrowUpRight size={16} /></a>
                 <a href={contact.phoneHref}><Phone size={16} /> {contact.phone}</a>
                 <a href={`mailto:${contact.email}`}><Mail size={16} /> {contact.email}</a>
               </div>

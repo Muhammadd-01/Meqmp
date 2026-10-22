@@ -233,6 +233,11 @@
 .mega__feature .eyebrow { color: var(--sky-300); margin-bottom: 10px; }
 .mega__feature p { line-height: 1.55; margin-bottom: 18px; }
 
+.nav__cta { display: flex; gap: 10px; align-items: center; }
+.nav__lms { gap: 6px; }
+.nav__lms svg { transition: transform 0.4s var(--ease); }
+.nav__lms:hover svg { transform: rotate(-12deg) scale(1.1); }
+
 .nav__burger {
   display: none;
   margin-left: auto;

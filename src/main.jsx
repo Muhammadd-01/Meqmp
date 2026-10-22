@@ -7,6 +7,7 @@ import './styles/global.css';
 import './styles/components.css';
 import './styles/pages.css';
 import './styles/effects.css';
+import './styles/dock.css';
 import App from './App';
 
 const container = document.getElementById('root');

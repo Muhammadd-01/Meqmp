@@ -3,8 +3,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { BackToTop, ScrollProgress, ScrollToTop } from './components/Chrome';
-import { Cursor, PageCurtain } from './components/Effects';
+import { ScrollProgress, ScrollToTop } from './components/Chrome';
+import Dock from './components/Dock';
+import { PageCurtain } from './components/Effects';
 import Seo from './components/Seo';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -45,7 +46,6 @@ export default function App() {
       <ScrollProgress />
       <ScrollToTop />
       <PageCurtain />
-      <Cursor />
       <a href="#main" className="skip-link">Skip to content</a>
       <Navbar />
       <Routes location={location} key={location.pathname}>
@@ -62,7 +62,7 @@ export default function App() {
         <Route path="*" element={<Page><NotFound /></Page>} />
       </Routes>
       <Footer />
-      <BackToTop />
+      <Dock />
     </>
   );
 }

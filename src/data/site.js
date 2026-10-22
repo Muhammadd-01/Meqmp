@@ -35,7 +35,7 @@ export const contact = {
   phone: '+966 50 939 4640',
   phoneHref: 'tel:+966509394640',
   email: 'info@meqmp.com',
-  lms: 'https://meridian-lms.com/',
+  lms: 'https://meridian-lms-ebon.vercel.app/',
   social: [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/company/meridian-quality-management' },
     { name: 'Facebook', href: 'https://www.facebook.com/meqmp.net' },

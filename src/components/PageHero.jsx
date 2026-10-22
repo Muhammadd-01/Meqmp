@@ -62,7 +62,7 @@ export default function PageHero({ eyebrow, title, highlight, text, image, crumb
             </motion.span>
           )}
 
-          <SplitText as="h1" inView={false} delay={0.15} stagger={0.05}>
+          <SplitText as="h1" inView={false} delay={0.15}>
             {parts.length > 1
               ? [parts[0], <span key="hl" className="text-gradient">{highlight}</span>, parts[1]]
               : title}

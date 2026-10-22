@@ -10,6 +10,7 @@
 - Pakistan office: 69 CCA, Sector A, DHA Phase 9, Lahore, Pakistan
 - Canada: serving clients across North America
 - Phone: +966 50 939 4640 | Email: info@meqmp.com
+- Learning platform (LMS): https://meridian-lms-beta.vercel.app/
 - Track record: 530+ consultancies, 2,500+ trainings, 10,000+ professionals served
 - Lead auditors: IRCA-certified; Aramco- and NEOM-approved
 - Training accreditations: CCL Canada, Highfield, Saaya; TVTC registered

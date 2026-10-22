@@ -1,40 +1,24 @@
-import { Children, isValidElement, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 
 const ease = [0.22, 1, 0.36, 1];
 
-// Word-by-word reveal. Plain strings split into words; elements (e.g. a highlighted
-// <span>) animate as a single unit so their styling stays intact.
-export function SplitText({ children, as = 'h2', className, delay = 0, stagger = 0.06, inView = true, ...rest }) {
+// Heading reveal: the whole heading rises, sharpens and fades in as one block, so
+// text always wraps naturally (no per-word boxes, no gaps mid-animation). Any
+// highlighted <span> inside gets an underline sweep once the heading lands.
+export function SplitText({ children, as = 'h2', className, delay = 0, inView = true, ...rest }) {
   const Tag = motion[as];
-  const units = [];
-  Children.toArray(children).forEach((child) => {
-    if (typeof child === 'string') child.split(/(\s+)/).forEach((w) => w && units.push(w));
-    else if (isValidElement(child)) units.push(child);
-  });
+  const variants = {
+    hidden: { opacity: 0, y: 34, filter: 'blur(8px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease, delay } },
+  };
   const trigger = inView
     ? { initial: 'hidden', whileInView: 'show', viewport: { once: true, margin: '-40px' } }
     : { initial: 'hidden', animate: 'show' };
 
   return (
-    <Tag className={`split-text ${className || ''}`} {...rest} {...trigger} variants={{ show: { transition: { staggerChildren: stagger, delayChildren: delay } } }}>
-      {units.map((u, i) =>
-        typeof u === 'string' && /^\s+$/.test(u) ? (
-          ' '
-        ) : (
-          <span className="split__mask" key={i}>
-            <motion.span
-              className="split__word"
-              variants={{
-                hidden: { y: '110%', opacity: 0, rotate: 4 },
-                show: { y: '0%', opacity: 1, rotate: 0, transition: { duration: 0.9, ease } },
-              }}
-            >
-              {u}
-            </motion.span>
-          </span>
-        )
-      )}
+    <Tag className={`split-text ${className || ''}`} variants={variants} {...rest} {...trigger}>
+      {children}
     </Tag>
   );
 }

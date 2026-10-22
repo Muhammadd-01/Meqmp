@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpRight, BadgeCheck, CheckCircle2, Globe2, Sparkles, X
 import Icon from '../components/Icon';
 import Counter from '../components/Counter';
 import Marquee from '../components/Marquee';
-import MeridianMark from '../components/MeridianMark';
+import HeroShowcase from '../components/HeroShowcase';
 import SectionHeading from '../components/SectionHeading';
 import SpotlightCard from '../components/SpotlightCard';
 import ProcessSteps from '../components/ProcessSteps';
@@ -117,8 +117,8 @@ function Hero() {
         </div>
 
         <div className="hero__visual">
-          <motion.div className="hero__orb" style={{ x: orbX, y: orbY }} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease }}>
-            <MeridianMark />
+          <motion.div className="hero__orb" style={{ x: orbX, y: orbY }}>
+            <HeroShowcase />
           </motion.div>
           <motion.div className="hero__cards" style={{ x: cardX, y: cardY }}>
 
