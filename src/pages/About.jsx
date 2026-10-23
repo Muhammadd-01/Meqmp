@@ -62,7 +62,7 @@ export default function About() {
           <div className="journey__grid">
             <Reveal className="journey__copy" x={-30} y={0}>
               <span className="eyebrow">Our journey</span>
-              <SplitText>From modest beginnings to a <span className="text-sky">trusted global partner</span></SplitText>
+              <SplitText>From modest beginnings to a <span className="text-accent">trusted global partner</span></SplitText>
               <p className="lead">
                 Meridian started with a simple belief: quality is not paperwork, it is how great organisations work.
               </p>
@@ -152,7 +152,7 @@ export default function About() {
       {/* Why choose us */}
       <section className="section section--deep">
         <div className="dot-grid" />
-        <div className="glow glow--orange" style={{ width: 380, height: 380, left: -140, bottom: -160, opacity: 0.3 }} />
+        <div className="glow glow--gold" style={{ width: 380, height: 380, left: -140, bottom: -160, opacity: 0.3 }} />
         <div className="container" style={{ position: 'relative' }}>
           <SectionHeading eyebrow="Why choose us" title="Credentials that open doors" text="The certifications, approvals and experience our clients rely on when the stakes are high." />
           <Stagger className="grid grid-4">
@@ -203,7 +203,7 @@ export default function About() {
           </ImageReveal>
           <Reveal x={30} y={0}>
             <span className="eyebrow">Our commitment</span>
-            <SplitText>Sustainability is a responsibility, <span className="text-sky">not a trend</span></SplitText>
+            <SplitText>Sustainability is a responsibility, <span className="text-accent">not a trend</span></SplitText>
             <p className="lead">
               We help clients adopt green practices using LEED, GRI and UN SDG frameworks — from carbon footprint
               assessments and energy-efficient strategy design to full ESG compliance support.
@@ -243,7 +243,7 @@ export default function About() {
               <StaggerItem key={o.country}>
                 <Tilt className="h-full" max={7}><SpotlightCard className="office-card">
                   <span className="office-card__flag" aria-hidden="true">{o.flag}</span>
-                  {o.hq && <span className="chip chip--orange office-card__hq">Head office</span>}
+                  {o.hq && <span className="chip chip--gold office-card__hq">Head office</span>}
                   <h3>{o.country}</h3>
                   <span className="office-card__city"><MapPin size={15} /> {o.city}</span>
                   <p>{o.address}</p>

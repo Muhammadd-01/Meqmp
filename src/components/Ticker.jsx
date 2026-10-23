@@ -1,7 +1,7 @@
 import { Sparkle } from 'lucide-react';
 
 // Skewed, auto-scrolling keyword band used as a vibrant section divider.
-export default function Ticker({ items, tone = 'orange', reverse = false }) {
+export default function Ticker({ items, tone = 'gold', reverse = false }) {
   const list = [...items, ...items];
   return (
     <div className="ticker-wrap" aria-hidden="true">

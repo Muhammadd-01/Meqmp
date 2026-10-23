@@ -19,9 +19,9 @@
   border: 0;
   display: grid;
   place-items: center;
-  color: var(--black);
-  background: var(--grad-orange);
-  box-shadow: var(--shadow-orange);
+  color: var(--deep);
+  background: var(--grad-gold);
+  box-shadow: var(--shadow-gold);
 }
 
 .dock__launcher.is-open { background: var(--deep); color: #fff; box-shadow: var(--shadow-lg); }
@@ -31,7 +31,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--gold-deep);
   animation: ping 2.2s var(--ease) infinite;
   pointer-events: none;
 }
@@ -86,7 +86,7 @@
   border-radius: 24px;
   background: #fff;
   border: 1px solid var(--line);
-  box-shadow: 0 30px 80px -20px rgba(2, 24, 32, 0.45);
+  box-shadow: 0 30px 80px -20px rgba(4, 31, 39, 0.45);
   overflow: hidden;
   transform-origin: bottom right;
   transition: bottom 0.4s var(--ease), height 0.4s var(--ease);
@@ -194,22 +194,22 @@
   gap: 4px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--orange-50);
-  border: 1px solid #ffe0b3;
-  color: var(--orange-600);
+  background: var(--gold-50);
+  border: 1px solid #ede2a6;
+  color: var(--gold-ink);
   font-weight: 600;
   font-size: 0.8rem;
   transition: background 0.25s, color 0.25s;
 }
 
-.chat__links a:hover { background: var(--orange); color: var(--black); }
+.chat__links a:hover { background: var(--gold); color: var(--deep); }
 
 .chat__quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 
 .chat__quick button {
   padding: 8px 13px;
   border-radius: 999px;
-  border: 1px solid var(--sky-100);
+  border: 1px solid var(--ice-200);
   background: #fff;
   color: var(--teal-600);
   font-weight: 600;
@@ -225,7 +225,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--sky);
+  background: var(--mist);
   animation: typing 1.1s ease-in-out infinite;
 }
 
@@ -257,7 +257,7 @@
   transition: border-color 0.25s, box-shadow 0.25s;
 }
 
-.chat__form input:focus { outline: 0; border-color: var(--sky); box-shadow: 0 0 0 4px rgba(66, 155, 183, 0.15); }
+.chat__form input:focus { outline: 0; border-color: var(--mist); box-shadow: 0 0 0 4px rgba(155, 179, 185, 0.15); }
 
 .chat__form button {
   width: 46px;
@@ -267,8 +267,8 @@
   border: 0;
   display: grid;
   place-items: center;
-  background: var(--orange);
-  color: var(--black);
+  background: var(--gold);
+  color: var(--deep);
   transition: transform 0.25s var(--ease), opacity 0.25s;
 }
 

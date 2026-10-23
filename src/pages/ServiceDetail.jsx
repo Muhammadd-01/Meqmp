@@ -131,7 +131,7 @@ export default function ServiceDetail() {
       {/* Process */}
       <section className="section section--deep">
         <div className="dot-grid" />
-        <div className="glow glow--orange" style={{ width: 380, height: 380, right: -120, bottom: -180, opacity: 0.3 }} />
+        <div className="glow glow--gold" style={{ width: 380, height: 380, right: -120, bottom: -180, opacity: 0.3 }} />
         <div className="container" style={{ position: 'relative' }}>
           <SectionHeading eyebrow="Our approach" title="A clear roadmap to transformation" />
           <ProcessSteps steps={d.process} dark />
@@ -143,7 +143,7 @@ export default function ServiceDetail() {
         <div className="container split split--top">
           <Reveal>
             <span className="eyebrow">Business benefits</span>
-            <SplitText>What you <span className="text-sky">gain</span></SplitText>
+            <SplitText>What you <span className="text-accent">gain</span></SplitText>
             <ul className="benefits">
               {d.benefits.map((b, i) => (
                 <motion.li

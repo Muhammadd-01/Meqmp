@@ -34,9 +34,7 @@ export default function Navbar() {
       <header className={`nav ${scrolled ? 'nav--scrolled' : 'nav--top'}`}>
         <div className="container nav__inner">
           <Link to="/" className="nav__brand" aria-label="Meridian home">
-            {/* White logo over the hero while transparent; colour logo once the bar turns solid. */}
-            <img className="nav__logo nav__logo--white" src="/images/logo-white.png" alt="" aria-hidden="true" />
-            <img className="nav__logo nav__logo--color" src="/images/logo.png" alt="Meridian Quality Management Professionals" />
+            <img src="/images/logo-white.png" alt="Meridian Quality Management Professionals" />
           </Link>
 
           <nav className="nav__links" aria-label="Primary">

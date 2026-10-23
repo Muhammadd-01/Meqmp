@@ -25,7 +25,7 @@ export function PageCurtain() {
       {run > 0 && (
         <motion.div key={run} className="curtain" aria-hidden="true">
           <motion.div
-            className="curtain__panel curtain__panel--orange"
+            className="curtain__panel curtain__panel--gold"
             initial={{ scaleY: 1 }}
             animate={{ scaleY: 0 }}
             transition={{ duration: 0.7, ease: wipe, delay: HOLD }}

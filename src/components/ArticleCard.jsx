@@ -6,7 +6,7 @@ export default function ArticleCard({ article: a }) {
     <Link to={`/insights/${a.slug}`} className="article-card">
       <div className="article-card__media">
         <img src={a.image.replace('w=1600', 'w=900')} alt="" loading="lazy" />
-        <span className="chip chip--orange">{a.category}</span>
+        <span className="chip chip--gold">{a.category}</span>
       </div>
       <div className="article-card__body">
         <span className="article-card__meta">{a.date} · {a.readTime}</span>

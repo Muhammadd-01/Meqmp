@@ -1,42 +1,46 @@
 /* =============================================================
    Meridian design system — tokens, base, layout, utilities
-   Palette: #2c5f6f #266173 #429bb7 #093f50 | #f78d00 #000000
+   Palette (preview.html): #093F50 #F2E6A2 #171A1C #E6F0F2 #F7F6F1 #9BB3B9
    ============================================================= */
 
 :root {
-  /* Brand palette */
-  --teal: #2c5f6f;
-  --teal-600: #266173;
-  --sky: #429bb7;
-  --deep: #093f50;
-  --orange: #f78d00;
-  --black: #000000;
+  /* Brand palette — from preview.html */
+  --deep: #093f50;        /* teal */
+  --teal: #093f50;
+  --teal-600: #3e6973;    /* teal text on light surfaces */
+  --slate: #4f7178;       /* kicker / eyebrow (preview #567A81, darkened for AA) */
+  --mist: #9bb3b9;        /* muted teal */
+  --gold: #f2e6a2;        /* accent fills, accent text on dark */
+  --black: #171a1c;
+  --paper: #f7f6f1;
+  --ice: #e6f0f2;
 
   /* Derived tints & shades */
-  --deep-900: #052a36;
-  --deep-950: #021820;
-  --sky-300: #7cc0d6;
-  --sky-100: #d9eef5;
-  --sky-50: #eef7fa;
-  --orange-400: #ffa733;
-  --orange-600: #d97a00;
-  --orange-50: #fff4e5;
+  --deep-900: #062d39;
+  --deep-950: #041f27;
+  --ice-200: #d3e3e6;
+  --gold-light: #fff9d7;
+  --gold-deep: #9a8b48;
+  --gold-ink: #7a6c2f;    /* gold for text/lines on light surfaces (AA on paper & white) */
+  --gold-50: #fbf7e3;
 
   /* Surfaces & text */
-  --bg: #ffffff;
-  --bg-soft: #f4f9fb;
+  --bg: #f7f6f1;
+  --bg-soft: #e6f0f2;
   --surface: #ffffff;
-  --line: #dbe8ed;
-  --line-strong: #c3d7df;
-  --ink: #0a2530;
-  --text: #3d5761;
-  --muted: #6b8590;
+  --line: #dde5e4;
+  --line-strong: #b8cbd0;
+  --ink: #171a1c;
+  --text: #4e6267;
+  --muted: #626f70;
+  --on-dark: #d4e0e2;
 
   /* Gradients */
-  --grad-deep: linear-gradient(135deg, #021820 0%, #093f50 45%, #266173 100%);
-  --grad-teal: linear-gradient(135deg, #093f50 0%, #2c5f6f 50%, #429bb7 100%);
-  --grad-orange: linear-gradient(135deg, #f78d00 0%, #ffa733 100%);
-  --grad-text: linear-gradient(90deg, #f78d00 0%, #ffb347 50%, #f78d00 100%);
+  --grad-deep: linear-gradient(135deg, #041f27 0%, #093f50 62%, #0d4b5e 100%);
+  --grad-teal: linear-gradient(135deg, #062d39 0%, #093f50 50%, #3e6973 100%);
+  --grad-gold: linear-gradient(135deg, #fff9d7 0%, #f2e6a2 55%, #e3d48c 100%);
+  --grad-gold-line: linear-gradient(90deg, #9a8b48 0%, #f2e6a2 100%);
+  --grad-text: linear-gradient(90deg, #f2e6a2 0%, #fff9d7 35%, #d9cb84 65%, #f2e6a2 100%);
 
   /* Type */
   --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -50,7 +54,7 @@
   --shadow-sm: 0 1px 2px rgba(9, 63, 80, 0.06), 0 2px 8px rgba(9, 63, 80, 0.05);
   --shadow: 0 10px 30px -10px rgba(9, 63, 80, 0.18);
   --shadow-lg: 0 30px 60px -20px rgba(9, 63, 80, 0.35);
-  --shadow-orange: 0 14px 34px -10px rgba(247, 141, 0, 0.55);
+  --shadow-gold: 0 14px 34px -12px rgba(154, 139, 72, 0.55);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   --container: 1240px;
@@ -119,12 +123,12 @@ button {
 }
 
 ::selection {
-  background: var(--orange);
-  color: var(--black);
+  background: var(--gold);
+  color: var(--deep);
 }
 
 :focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -191,7 +195,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--teal-600);
+  color: var(--slate);
   margin-bottom: 18px;
 }
 
@@ -199,12 +203,18 @@ button {
   content: '';
   width: 28px;
   height: 2px;
-  background: var(--orange);
+  background: var(--gold-ink);
   border-radius: 2px;
 }
 
+.section--deep .eyebrow::before,
+.on-dark .eyebrow::before,
+.page-hero .eyebrow::before,
+.cta .eyebrow::before,
+.mega__feature .eyebrow::before { background: var(--gold); }
+
 .section--deep .eyebrow,
-.on-dark .eyebrow { color: var(--sky-300); }
+.on-dark .eyebrow { color: var(--gold); }
 
 .lead {
   font-size: clamp(1.05rem, 1.3vw, 1.2rem);
@@ -223,8 +233,9 @@ button {
   animation: shimmer 6s linear infinite;
 }
 
-.text-sky { color: var(--sky); }
-.text-orange { color: var(--orange); }
+.text-accent { color: var(--teal-600); }
+.section--deep .text-accent, .on-dark .text-accent, .cta .text-accent { color: var(--gold); }
+.text-gold { color: var(--gold-ink); }
 .center { text-align: center; }
 
 @keyframes shimmer {
@@ -260,9 +271,9 @@ button {
 .btn:active { transform: translateY(0); }
 
 .btn--primary {
-  background: var(--orange);
-  color: var(--black);
-  box-shadow: var(--shadow-orange);
+  background: var(--gold);
+  color: var(--deep);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn--primary::after {
@@ -276,14 +287,14 @@ button {
 }
 
 .btn--primary:hover::after { transform: translateX(120%); }
-.btn--primary:hover { background: var(--orange-400); box-shadow: 0 18px 40px -10px rgba(247, 141, 0, 0.7); }
+.btn--primary:hover { background: #ffffff; box-shadow: 0 18px 40px -12px rgba(154, 139, 72, 0.6); }
 
 .btn--dark {
   background: var(--deep);
   color: #fff;
 }
 
-.btn--dark:hover { background: var(--black); box-shadow: var(--shadow); }
+.btn--dark:hover { background: var(--black); color: var(--gold); box-shadow: var(--shadow); }
 
 .btn--ghost {
   background: rgba(255, 255, 255, 0.06);
@@ -315,7 +326,9 @@ button {
   transition: gap 0.3s var(--ease), color 0.3s;
 }
 
-.link-arrow:hover { gap: 14px; color: var(--orange-600); }
+.link-arrow:hover { gap: 14px; color: var(--gold-ink); }
+.section--deep .link-arrow, .on-dark .link-arrow { color: var(--gold); }
+.section--deep .link-arrow:hover, .on-dark .link-arrow:hover { color: #fff; }
 
 /* ---------- Chips ---------- */
 .chip {
@@ -326,15 +339,15 @@ button {
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 600;
-  background: var(--sky-50);
+  background: var(--ice);
   color: var(--teal-600);
-  border: 1px solid var(--sky-100);
+  border: 1px solid var(--ice-200);
 }
 
-.chip--orange {
-  background: var(--orange-50);
-  color: var(--orange-600);
-  border-color: #ffe0b3;
+.chip--gold {
+  background: var(--gold-50);
+  color: var(--gold-ink);
+  border-color: #ede2a6;
 }
 
 /* ---------- Decorative ---------- */
@@ -355,8 +368,8 @@ button {
   opacity: 0.55;
 }
 
-.glow--orange { background: var(--orange); }
-.glow--sky { background: var(--sky); }
+.glow--gold { background: var(--gold); }
+.glow--mist { background: var(--mist); }
 
 @media (prefers-reduced-motion: reduce) {
   *,

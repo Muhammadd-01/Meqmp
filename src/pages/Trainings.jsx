@@ -120,7 +120,7 @@ export default function Trainings() {
           <ImageReveal className="detail-photo" src={photos.workshop.replace('w=1600', 'w=1100')} srcSet={srcSet(photos.workshop, [480, 768, 1080])} sizes="(max-width: 900px) 92vw, 46vw" alt="Interactive Meridian training workshop" />
           <Reveal x={30} y={0}>
             <span className="eyebrow">Corporate programs</span>
-            <SplitText>Training designed around <span className="text-sky">your people</span></SplitText>
+            <SplitText>Training designed around <span className="text-accent">your people</span></SplitText>
             <p className="lead">
               Need something specific? We design bespoke programs — from Aramco Schedule Q awareness to executive
               quality leadership — delivered on-site, virtually or through our LMS.

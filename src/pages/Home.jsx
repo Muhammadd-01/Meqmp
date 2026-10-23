@@ -84,8 +84,8 @@ function Hero() {
       </div>
       <div className="hero__overlay" aria-hidden="true" />
       <div className="dot-grid" />
-      <div className="glow glow--sky glow--drift" style={{ width: 520, height: 520, top: -200, left: -160, opacity: 0.35 }} />
-      <div className="glow glow--orange glow--drift" style={{ width: 420, height: 420, bottom: -220, right: '20%', opacity: 0.28 }} />
+      <div className="glow glow--mist glow--drift" style={{ width: 520, height: 520, top: -200, left: -160, opacity: 0.35 }} />
+      <div className="glow glow--gold glow--drift" style={{ width: 420, height: 420, bottom: -220, right: '20%', opacity: 0.28 }} />
       <div className="hero__particles" aria-hidden="true">
         {Array.from({ length: 14 }, (_, k) => <span key={k} style={{ '--i': k, '--s': `${6 + ((k * 5) % 8)}px` }} />)}
       </div>
@@ -203,7 +203,7 @@ function Pillars() {
           <SectionHeading
             align="left"
             eyebrow="What we do"
-            title={<>Five pillars of <span className="text-sky">sustainable excellence</span></>}
+            title={<>Five pillars of <span className="text-accent">sustainable excellence</span></>}
             text="Integrated solutions for quality, health & safety, environment, food safety, sustainability, risk, change management, business continuity and corporate wellbeing."
           />
           <Reveal delay={0.1}>
@@ -290,7 +290,7 @@ function AboutTeaser() {
 
         <Reveal x={30} y={0}>
           <span className="eyebrow">About Meridian</span>
-          <SplitText>Together, we build <span className="text-sky">sustainable excellence</span></SplitText>
+          <SplitText>Together, we build <span className="text-accent">sustainable excellence</span></SplitText>
           <p className="lead">
             Since 2005, Meridian has grown from modest beginnings into a trusted partner for quality and compliance —
             an ISO 9001:2015 certified firm with offices in Saudi Arabia, Bahrain, Canada and Pakistan.
@@ -317,7 +317,7 @@ function HowWeWork() {
   return (
     <section className="section section--deep">
       <div className="dot-grid" />
-      <div className="glow glow--orange glow--drift" style={{ width: 400, height: 400, right: -120, top: -120, opacity: 0.25 }} />
+      <div className="glow glow--gold glow--drift" style={{ width: 400, height: 400, right: -120, top: -120, opacity: 0.25 }} />
       <div className="container" style={{ position: 'relative' }}>
         <SectionHeading eyebrow="How we work" title="We get it right the first time" text="A proven four-stage approach that takes you from first conversation to lasting, self-sustaining excellence." />
         <ProcessSteps steps={howWeWork} dark />
@@ -376,7 +376,7 @@ function Voices() {
   return (
     <section className="section section--deep voices">
       <div className="dot-grid" />
-      <div className="glow glow--sky" style={{ width: 500, height: 500, left: '30%', top: -300, opacity: 0.3 }} />
+      <div className="glow glow--mist" style={{ width: 500, height: 500, left: '30%', top: -300, opacity: 0.3 }} />
       <div className="container" style={{ position: 'relative' }}>
         <SectionHeading eyebrow="Client voices" title="What our clients and learners say" />
         <Testimonials />

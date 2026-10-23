@@ -28,8 +28,8 @@ export default function HeroShowcase() {
       <svg className="showcase__rings" viewBox="0 0 400 400" aria-hidden="true">
         <defs>
           <linearGradient id="showcase-arc" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ffb347" />
-            <stop offset="1" stopColor="#f78d00" />
+            <stop offset="0" stopColor="#fff9d7" />
+            <stop offset="1" stopColor="#d9cb84" />
           </linearGradient>
         </defs>
         <circle className="showcase__orbit-line" cx="200" cy="200" r="192" />

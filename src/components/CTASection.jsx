@@ -13,7 +13,7 @@ export default function CTASection({
       <div className="container">
         <Reveal className="cta">
           <div className="dot-grid" />
-          <div className="glow glow--orange" style={{ width: 300, height: 300, left: -80, bottom: -160, opacity: 0.4 }} />
+          <div className="glow glow--gold" style={{ width: 300, height: 300, left: -80, bottom: -160, opacity: 0.4 }} />
           <MeridianMark className="cta__mark" />
           <div className="cta__content">
             <span className="eyebrow">Let's work together</span>

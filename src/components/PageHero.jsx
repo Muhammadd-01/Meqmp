@@ -33,7 +33,7 @@ export default function PageHero({ eyebrow, title, highlight, text, image, crumb
       )}
       <div className="page-hero__wash" />
       <div className="dot-grid" />
-      <div className="glow glow--orange glow--drift" style={{ width: 340, height: 340, right: '8%', bottom: -180, opacity: 0.35 }} />
+      <div className="glow glow--gold glow--drift" style={{ width: 340, height: 340, right: '8%', bottom: -180, opacity: 0.35 }} />
       <div className="page-hero__lines" aria-hidden="true">
         <span /><span /><span />
       </div>

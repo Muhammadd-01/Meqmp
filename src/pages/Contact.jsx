@@ -110,7 +110,7 @@ export default function Contact() {
               <StaggerItem key={o.country}>
                 <Tilt className="h-full" max={7}><SpotlightCard className="office-card">
                   <span className="office-card__flag" aria-hidden="true">{o.flag}</span>
-                  {o.hq && <span className="chip chip--orange office-card__hq">Head office</span>}
+                  {o.hq && <span className="chip chip--gold office-card__hq">Head office</span>}
                   <h3>{o.country}</h3>
                   <span className="office-card__city"><MapPin size={15} /> {o.city}</span>
                   <p>{o.address}</p>

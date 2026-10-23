@@ -22,8 +22,8 @@ function SocialIcon({ name }) {
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="glow glow--orange" style={{ width: 380, height: 380, top: -200, right: -100, opacity: 0.18 }} />
-      <div className="glow glow--sky" style={{ width: 420, height: 420, bottom: -260, left: -120, opacity: 0.25 }} />
+      <div className="glow glow--gold" style={{ width: 380, height: 380, top: -200, right: -100, opacity: 0.18 }} />
+      <div className="glow glow--mist" style={{ width: 420, height: 420, bottom: -260, left: -120, opacity: 0.25 }} />
 
       <div className="container">
         <div className="footer__cta">

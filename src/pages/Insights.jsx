@@ -30,7 +30,7 @@ export default function Insights() {
                 <img src={featured.image.replace('w=1600', 'w=1200')} srcSet={srcSet(featured.image, [480, 768, 1080, 1440])} sizes="(max-width: 900px) 92vw, 55vw" alt={featured.title} />
               </div>
               <div className="featured__body">
-                <span className="chip chip--orange">Featured · {featured.category}</span>
+                <span className="chip chip--gold">Featured · {featured.category}</span>
                 <h2>{featured.title}</h2>
                 <p className="lead">{featured.excerpt}</p>
                 <span className="featured__meta"><Calendar size={15} /> {featured.date} <Clock size={15} /> {featured.readTime}</span>
